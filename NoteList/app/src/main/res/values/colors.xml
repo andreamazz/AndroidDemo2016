@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+
+    <!-- Edit primary colors to change toolbar and status bar background -->
+    <color name="colorPrimary">#1b7bbd</color>
+    <color name="colorPrimaryDark">#186499</color>
+
+    <!-- Edit accent color to change FAB background -->
+    <color name="colorAccent">#c64542</color>
 </resources>

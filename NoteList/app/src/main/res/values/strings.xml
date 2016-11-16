@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">NoteList</string>
     <string name="action_settings">Settings</string>
+
+    <!-- Add Custom Strings -->
+    <string name="main_activity_name">List</string>
 </resources>
