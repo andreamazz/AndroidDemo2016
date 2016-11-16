@@ -10,10 +10,13 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+
+import static android.provider.AlarmClock.EXTRA_MESSAGE;
 
 public class Main extends AppCompatActivity {
 
@@ -57,6 +60,8 @@ public class Main extends AppCompatActivity {
 
         listView.setAdapter(arrayAdapter);
 
+        listView.setOnItemClickListener(mCallback);
+
     }
 
     @Override
@@ -79,6 +84,13 @@ public class Main extends AppCompatActivity {
             }
         }
     }
+
+    AdapterView.OnItemClickListener mCallback = new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            Log.i("NoteList", "Selected: " + parent.getItemAtPosition(position));
+        }
+    };
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
