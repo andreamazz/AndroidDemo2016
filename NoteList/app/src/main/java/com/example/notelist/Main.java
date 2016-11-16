@@ -1,5 +1,7 @@
 package com.example.notelist;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -87,8 +89,17 @@ public class Main extends AppCompatActivity {
 
     AdapterView.OnItemClickListener mCallback = new AdapterView.OnItemClickListener() {
         @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            Log.i("NoteList", "Selected: " + parent.getItemAtPosition(position));
+        public void onItemClick(final AdapterView<?> parent, View view, final int position, long id) {
+            new AlertDialog.Builder(Main.this)
+                    .setTitle(getString(R.string.delete_dialog_title))
+                    .setMessage(getString(R.string.delete_dialog_message))
+                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            arrayAdapter.remove((String) parent.getItemAtPosition(position));
+                        }
+                    })
+                    .setNegativeButton(android.R.string.no, null)
+                    .show();
         }
     };
 

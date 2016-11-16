@@ -7,4 +7,6 @@
     <string name="title_activity_add_item">Add Item</string>
     <string name="new_item_hint">New Item</string>
     <string name="action_save">Save</string>
+    <string name="delete_dialog_title">Delete Item?</string>
+    <string name="delete_dialog_message">The elimination of this element will not be changed.</string>
 </resources>
