@@ -17,6 +17,8 @@ import java.util.ArrayList;
 
 public class Main extends AppCompatActivity {
 
+    int NEW_ITEM_REQUEST_CODE = 1;
+
     ArrayList<String> mItems = new ArrayList<>();
 
     @Override
@@ -31,7 +33,7 @@ public class Main extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(Main.this, AddItem.class);
-                startActivity(i);
+                startActivityForResult(i, NEW_ITEM_REQUEST_CODE);
             }
         });
 
@@ -54,6 +56,17 @@ public class Main extends AppCompatActivity {
 
         listView.setAdapter(arrayAdapter);
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // Check which request we're responding to
+        if (requestCode == NEW_ITEM_REQUEST_CODE) {
+            // Make sure the request was successful
+            if (resultCode == RESULT_OK) {
+                Log.i("NoteList", data.getStringExtra(Constants.ITEM_VALUE));
+            }
+        }
     }
 
     @Override
