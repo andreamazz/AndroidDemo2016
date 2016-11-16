@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">NoteList</string>
+    <string name="action_save">Salva</string>
+    <string name="action_settings">Impostazioni</string>
+    <string name="delete_dialog_message">L\'eliminazione di questo elemento non sarà reversibile.</string>
+    <string name="delete_dialog_title">Elimina elemento?</string>
+    <string name="main_activity_name">Lista</string>
+    <string name="new_item_hint">Nuovo Elemento</string>
+    <string name="title_activity_add_item">Aggiungi Elemento</string>
+</resources>
