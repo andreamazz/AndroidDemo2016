@@ -4,4 +4,7 @@
 
     <!-- Add Custom Strings -->
     <string name="main_activity_name">List</string>
+    <string name="title_activity_add_item">Add Item</string>
+    <string name="new_item_hint">New Item</string>
+    <string name="action_save">Save</string>
 </resources>
