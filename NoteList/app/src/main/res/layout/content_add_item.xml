@@ -10,6 +10,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
+    android:background="@android:color/white"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.notelist.AddItem"
     tools:showIn="@layout/activity_add_item">
@@ -18,7 +19,9 @@
         android:layout_width="match_parent"
         android:layout_height="?android:attr/actionBarSize"
         android:hint="@string/new_item_hint"
+        android:padding="8dp"
         android:inputType="textAutoComplete|textAutoCorrect|textCapSentences"
+        android:background="@android:color/white"
         android:id="@+id/item_text"/>
 
     <Button
