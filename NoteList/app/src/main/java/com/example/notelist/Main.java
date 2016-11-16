@@ -20,6 +20,7 @@ public class Main extends AppCompatActivity {
     int NEW_ITEM_REQUEST_CODE = 1;
 
     ArrayList<String> mItems = new ArrayList<>();
+    ArrayAdapter<String> arrayAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +50,7 @@ public class Main extends AppCompatActivity {
         // This is the array adapter, it takes the context of the activity as a
         // first parameter, the row layout as a second parameter and your
         // array as a third parameter.
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
+        arrayAdapter = new ArrayAdapter<String>(
                 this,
                 android.R.layout.simple_list_item_1,
                 mItems);
@@ -62,9 +63,19 @@ public class Main extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         // Check which request we're responding to
         if (requestCode == NEW_ITEM_REQUEST_CODE) {
+
             // Make sure the request was successful
             if (resultCode == RESULT_OK) {
-                Log.i("NoteList", data.getStringExtra(Constants.ITEM_VALUE));
+
+                // Make sure the result has item value extra
+                if (data.hasExtra(Constants.ITEM_VALUE)) {
+                    String newItem = data.getStringExtra(Constants.ITEM_VALUE);
+
+                    // It is not necessary to check if it is empty
+                    if (!newItem.isEmpty()) {
+                        arrayAdapter.add(newItem);
+                    }
+                }
             }
         }
     }
