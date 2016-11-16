@@ -8,8 +8,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import java.util.ArrayList;
 
 public class Main extends AppCompatActivity {
+
+    ArrayList<String> mItems = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +32,26 @@ public class Main extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        // Initialize the store
+        mItems.add("First Item");
+        mItems.add("Second Item");
+        mItems.add("Last Item");
+
+        // Find the list view inside the layout with its ID.
+        ListView listView = (ListView) findViewById(R.id.listView);
+
+
+        // This is the array adapter, it takes the context of the activity as a
+        // first parameter, the row layout as a second parameter and your
+        // array as a third parameter.
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
+                this,
+                android.R.layout.simple_list_item_1,
+                mItems );
+
+        listView.setAdapter(arrayAdapter);
+
     }
 
     @Override
