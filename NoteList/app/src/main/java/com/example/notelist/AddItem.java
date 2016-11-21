@@ -24,7 +24,7 @@ public class AddItem extends AppCompatActivity {
 
         final EditText input = (EditText) findViewById(R.id.item_text);
 
-        Button actionSave = (Button) findViewById(R.id.action_save);
+        View actionSave = findViewById(R.id.action_save);
         actionSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

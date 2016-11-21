@@ -5,7 +5,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -16,16 +15,17 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import java.util.ArrayList;
+import com.example.notelist.adapter.CustomAdapter;
+import com.example.notelist.model.Item;
 
-import static android.provider.AlarmClock.EXTRA_MESSAGE;
+import java.util.ArrayList;
 
 public class Main extends AppCompatActivity {
 
     int NEW_ITEM_REQUEST_CODE = 1;
 
-    ArrayList<String> mItems = new ArrayList<>();
-    ArrayAdapter<String> arrayAdapter;
+    ArrayList<Item> mItems = new ArrayList<>();
+    CustomAdapter mCustomAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,9 +44,9 @@ public class Main extends AppCompatActivity {
         });
 
         // Initialize the store
-        mItems.add("First Item");
-        mItems.add("Second Item");
-        mItems.add("Last Item");
+        mItems.add(new Item("First Item"));
+        mItems.add(new Item("Second Item"));
+        mItems.add(new Item("Last Item"));
 
         // Find the list view inside the layout with its ID.
         ListView listView = (ListView) findViewById(R.id.listView);
@@ -55,12 +55,9 @@ public class Main extends AppCompatActivity {
         // This is the array adapter, it takes the context of the activity as a
         // first parameter, the row layout as a second parameter and your
         // array as a third parameter.
-        arrayAdapter = new ArrayAdapter<String>(
-                this,
-                android.R.layout.simple_list_item_1,
-                mItems);
+        mCustomAdapter = new CustomAdapter(this, mItems);
 
-        listView.setAdapter(arrayAdapter);
+        listView.setAdapter(mCustomAdapter);
 
         listView.setOnItemClickListener(mCallback);
 
@@ -80,7 +77,7 @@ public class Main extends AppCompatActivity {
 
                     // It is not necessary to check if it is empty
                     if (!newItem.isEmpty()) {
-                        arrayAdapter.add(newItem);
+                        mCustomAdapter.add(new Item(newItem));
                     }
                 }
             }
@@ -95,7 +92,7 @@ public class Main extends AppCompatActivity {
                     .setMessage(getString(R.string.delete_dialog_message))
                     .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
-                            arrayAdapter.remove((String) parent.getItemAtPosition(position));
+                            mCustomAdapter.remove((Item) parent.getItemAtPosition(position));
                         }
                     })
                     .setNegativeButton(android.R.string.no, null)

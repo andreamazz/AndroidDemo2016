@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/content_add_item"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
     android:background="@android:color/white"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
@@ -17,17 +13,25 @@
     
     <EditText
         android:layout_width="match_parent"
-        android:layout_height="?android:attr/actionBarSize"
+        android:layout_height="match_parent"
         android:hint="@string/new_item_hint"
-        android:padding="8dp"
+        android:padding="@dimen/activity_vertical_margin"
+        android:gravity="top"
+        android:layout_above="@+id/action_save"
         android:inputType="textAutoComplete|textAutoCorrect|textCapSentences"
         android:background="@android:color/white"
         android:id="@+id/item_text"/>
 
-    <Button
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="?android:attr/actionBarSize"
+        android:layout_alignParentBottom="true"
+        android:textColor="@android:color/white"
+        android:background="@color/colorAccent"
+        android:textAppearance="?android:attr/textAppearanceButton"
+        android:gravity="center"
+        android:foreground="?attr/selectableItemBackground"
         android:text="@string/action_save"
-        android:id="@+id/action_save"/>
+        android:id="@+id/action_save" />
 
-</LinearLayout>
+</RelativeLayout>
