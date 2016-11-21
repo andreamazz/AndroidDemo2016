@@ -18,7 +18,7 @@
         android:padding="@dimen/activity_vertical_margin"
         android:gravity="top"
         android:layout_above="@+id/action_save"
-        android:inputType="textAutoComplete|textAutoCorrect|textCapSentences"
+        android:inputType="textAutoComplete|textAutoCorrect|textCapSentences|textMultiLine"
         android:background="@android:color/white"
         android:id="@+id/item_text"/>
 

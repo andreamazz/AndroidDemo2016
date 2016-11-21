@@ -19,13 +19,14 @@ import com.example.notelist.adapter.CustomAdapter;
 import com.example.notelist.model.Item;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Main extends AppCompatActivity {
 
     int NEW_ITEM_REQUEST_CODE = 1;
 
     ArrayList<Item> mItems = new ArrayList<>();
-    CustomAdapter mCustomAdapter;
+    CustomAdapter mCustomAdapter = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,17 +87,11 @@ public class Main extends AppCompatActivity {
 
     AdapterView.OnItemClickListener mCallback = new AdapterView.OnItemClickListener() {
         @Override
-        public void onItemClick(final AdapterView<?> parent, View view, final int position, long id) {
-            new AlertDialog.Builder(Main.this)
-                    .setTitle(getString(R.string.delete_dialog_title))
-                    .setMessage(getString(R.string.delete_dialog_message))
-                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            mCustomAdapter.remove((Item) parent.getItemAtPosition(position));
-                        }
-                    })
-                    .setNegativeButton(android.R.string.no, null)
-                    .show();
+        public void onItemClick(final AdapterView<?> parent, View view, int position, long id) {
+            ((Item) parent.getItemAtPosition(position)).toggle();
+
+            // Update adapter
+            mCustomAdapter.notifyDataSetChanged();
         }
     };
 
@@ -116,9 +111,35 @@ public class Main extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            new AlertDialog.Builder(Main.this)
+                    .setTitle(getString(R.string.delete_dialog_title))
+                    .setMessage(getString(R.string.delete_dialog_message))
+                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            clearData();
+                        }
+                    })
+                    .setNegativeButton(android.R.string.cancel, null)
+                    .show();
+
             return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void clearData() {
+        if (mItems.size() > 0 && mCustomAdapter != null) {
+            for (Iterator<Item> iterator = mItems.iterator(); iterator.hasNext();) {
+                Item i = iterator.next();
+                if (i.isDone()) {
+                    // Remove the current element from the iterator and the list.
+                    iterator.remove();
+                }
+            }
+
+            // Update adapter
+            mCustomAdapter.notifyDataSetChanged();
+        }
     }
 }
